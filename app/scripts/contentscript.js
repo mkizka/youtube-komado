@@ -37,5 +37,5 @@
       isActive = false;
     }
     window.dispatchEvent(new Event("resize"));
-  }, 500);
+  }, 100);
 })();
