@@ -1,0 +1,12 @@
+{
+  "name": "youtube",
+  "version": "0.0.1",
+  "description": "YouTubeでコメントを見ながら動画も見るために、右下とかに小窓表示する拡張機能",
+  "scripts": {
+    "dev": "webextension-toolbox dev",
+    "build": "webextension-toolbox build"
+  },
+  "devDependencies": {
+    "webextension-toolbox": "latest"
+  }
+}

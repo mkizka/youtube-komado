@@ -1,0 +1,18 @@
+{
+  "appName": {
+    "message": "youtube小窓",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "youtube小窓",
+    "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
+  },
+  "appDescription": {
+    "message": "YouTubeでコメントを見ながら動画も見るために、右下とかに小窓表示する拡張機能",
+    "description": "The description of the application"
+  },
+  "browserActionTitle": {
+    "message": "youtube小窓",
+    "description": "The title of the browser action button"
+  }
+}
