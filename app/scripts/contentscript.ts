@@ -9,21 +9,16 @@ function insertStyle(css: string) {
 }
 
 function main() {
-  let isActive = false;
-  console.info("komado:読み込み開始");
   setInterval(() => {
     const player = document.querySelector<HTMLDivElement>("#movie_player")!;
+    const minimized = player.classList.contains("komado-minimize");
     const shouldMinimize =
       window.pageYOffset > player.parentElement.offsetHeight * 0.75;
-    if (!isActive && shouldMinimize) {
-      console.info("komado:小窓化");
+    if (!minimized && shouldMinimize) {
       player.classList.add("komado-minimize");
-      isActive = true;
     }
-    if (isActive && !shouldMinimize) {
-      console.info("komado:小窓解除");
+    if (minimized && !shouldMinimize) {
       player.classList.remove("komado-minimize");
-      isActive = false;
     }
     window.dispatchEvent(new Event("resize"));
   }, 100);
@@ -32,8 +27,8 @@ function main() {
 insertStyle(`
   .komado-minimize {
     position: fixed !important;
-    right: 20px;
-    bottom: 20px;
+    right: 20px !important;
+    bottom: 20px !important;
     height: ${miniHeight}px !important;
     width: ${miniWidth}px !important;
     z-index: 10000 !important;
