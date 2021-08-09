@@ -6,8 +6,7 @@ module.exports = {
     config.resolve.extensions.push(".ts");
     config.resolve.extensions.push(".tsx");
     config.entry = GlobEntriesPlugin.getEntries([
-      resolve("app", "*.{ts,tsx}"),
-      resolve("app", "?(scripts)/*.{js,mjs,jsx,ts,tsx}"),
+      resolve("app", "?(scripts)/*.{ts,tsx}"),
     ]);
     config.module.rules.push({
       test: /\.tsx?$/,
