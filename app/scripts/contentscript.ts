@@ -30,7 +30,8 @@ async function main() {
   }
   `);
   setInterval(() => {
-    const player = document.querySelector<HTMLDivElement>("#movie_player")!;
+    const player = document.querySelector<HTMLDivElement>("#movie_player");
+    if (player == null) return;
     const minimized = player.classList.contains("komado-minimize");
     const shouldMinimize =
       window.pageYOffset > player.parentElement.offsetHeight * 0.75;
