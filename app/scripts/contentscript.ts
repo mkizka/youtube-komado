@@ -7,11 +7,15 @@ function insertStyle(css: string) {
   document.head.appendChild(style);
 }
 
+function needPositive(value: string, initialValue: number) {
+  const parsed = parseInt(value);
+  return parsed >= 0 ? parsed : initialValue;
+}
+
 async function main() {
-  const { width = 480, height = 270 } = await browser.storage.sync.get([
-    "width",
-    "height",
-  ]);
+  const storage = await browser.storage.sync.get(["width", "height"]);
+  const width = needPositive(storage.width, 480);
+  const height = needPositive(storage.height, 270);
   insertStyle(`
   .komado-minimize {
     position: fixed !important;

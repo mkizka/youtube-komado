@@ -20,22 +20,24 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
 }
 
 export function App() {
-  const [width, setWidth] = useStorage("width", 480);
-  const [height, setHeight] = useStorage("height", 270);
-  const handleSubmit = () => {
-    browser.tabs.reload();
-  };
+  const [width, setWidth] = useStorage("width", "480");
+  const [height, setHeight] = useStorage("height", "270");
   return (
     <form>
-      <input
-        value={width}
-        onChange={(e) => setWidth(parseInt(e.target.value))}
-      />
-      <input
-        value={height}
-        onChange={(e) => setHeight(parseInt(e.target.value))}
-      />
-      <button type="button" onClick={handleSubmit}>
+      <p>
+        <label>小窓プレーヤーの横幅</label>
+        <br />
+        <input value={width} onInput={(e) => setWidth(e.currentTarget.value)} />
+      </p>
+      <p>
+        <label>小窓プレーヤーの縦幅</label>
+        <br />
+        <input
+          value={height}
+          onInput={(e) => setHeight(e.currentTarget.value)}
+        />
+      </p>
+      <button type="button" onClick={() => browser.tabs.reload()}>
         リロードして設定を反映
       </button>
     </form>
