@@ -21,7 +21,7 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
 
 export function App() {
   const [playerWidth, setPlayerWidth] = useStorage("playerWidth", 480);
-  const playerWidthOptions = [256, 320, 480, 544, 640, 768];
+  const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
     <>
       <label>小窓プレーヤーの横幅</label>
@@ -31,7 +31,7 @@ export function App() {
       >
         {playerWidthOptions.map((playerWidth) => (
           <option key={playerWidth} value={playerWidth}>
-            {playerWidth}
+            {`${playerWidth}x${(playerWidth * 9) / 16}`}
           </option>
         ))}
       </select>
