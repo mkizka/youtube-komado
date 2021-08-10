@@ -20,22 +20,23 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
 }
 
 export function App() {
-  const [width, setWidth] = useStorage("width", "480");
-  const [height, setHeight] = useStorage("height", "270");
+  const [playerWidth, setPlayerWidth] = useStorage("playerWidth", 480);
+  const playerWidthOptions = [256, 320, 480, 544, 640, 768];
   return (
     <form>
       <p>
         <label>小窓プレーヤーの横幅</label>
         <br />
-        <input value={width} onInput={(e) => setWidth(e.currentTarget.value)} />
-      </p>
-      <p>
-        <label>小窓プレーヤーの縦幅</label>
-        <br />
-        <input
-          value={height}
-          onInput={(e) => setHeight(e.currentTarget.value)}
-        />
+        <select
+          value={playerWidth}
+          onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
+        >
+          {playerWidthOptions.map((playerWidth) => (
+            <option key={playerWidth} value={playerWidth}>
+              {playerWidth}
+            </option>
+          ))}
+        </select>
       </p>
       <button type="button" onClick={() => browser.tabs.reload()}>
         リロードして設定を反映

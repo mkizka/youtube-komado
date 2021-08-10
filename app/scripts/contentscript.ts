@@ -13,21 +13,21 @@ function needPositive(value: string, initialValue: number) {
 }
 
 async function main() {
-  const storage = await browser.storage.sync.get(["width", "height"]);
-  const width = needPositive(storage.width, 480);
-  const height = needPositive(storage.height, 270);
+  const storage = await browser.storage.sync.get(["playerWidth"]);
+  const playerWidth = needPositive(storage.playerWidth, 480);
+  const playerHeight = (playerWidth * 9) / 16;
   insertStyle(`
   .komado-minimize {
     position: fixed !important;
     right: 20px !important;
     bottom: 20px !important;
-    height: ${height}px !important;
-    width: ${width}px !important;
+    height: ${playerHeight}px !important;
+    width: ${playerWidth}px !important;
     z-index: 10000 !important;
   }
   .komado-minimize video {
-    height: ${height}px !important;
-    width: ${width}px !important;
+    height: ${playerHeight}px !important;
+    width: ${playerWidth}px !important;
   }
   .komado-minimize .ytp-right-controls {
     display:none !important;
