@@ -12,6 +12,10 @@ module.exports = {
       test: /\.tsx?$/,
       loader: "ts-loader",
     });
+    config.module.rules.push({
+      test: /\.css$/,
+      use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+    });
     return config;
   },
   copyIgnore: ["**/*.ts", "**/*.tsx"],

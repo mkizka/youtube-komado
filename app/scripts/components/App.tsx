@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import browser from "webextension-polyfill";
+import "@exampledev/new.css";
+import "./App.css";
 
 function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
