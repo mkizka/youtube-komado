@@ -15,6 +15,19 @@ function createCloseButton(onClose: () => void) {
   return button;
 }
 
+function minimizePlayer(player: HTMLDivElement) {
+  const closeButton = createCloseButton(() => resetPlayer(player, "closed"));
+  player.insertAdjacentElement("beforeend", closeButton);
+  player.dataset.komadoState = "minimized";
+}
+
+function resetPlayer(player: HTMLDivElement, newState: string) {
+  document
+    .querySelectorAll(".komado-close")
+    .forEach((button) => button.remove());
+  player.dataset.komadoState = newState;
+}
+
 async function main() {
   const storage = await browser.storage.sync.get(["playerWidth"]);
   const playerWidth = needPositive(storage.playerWidth, 480);
@@ -29,21 +42,14 @@ async function main() {
   );
   setInterval(() => {
     const player = document.querySelector<HTMLDivElement>("#movie_player");
-    const closeButton = createCloseButton(() => {
-      player.dataset.komadoState = "closed";
-    });
     if (player == null) return;
     const shouldMinimize =
       window.pageYOffset > player.parentElement.offsetHeight * 0.75;
     if (shouldMinimize && player.dataset.komadoState == "ready") {
-      player.insertAdjacentElement("beforeend", closeButton);
-      player.dataset.komadoState = "minimized";
+      minimizePlayer(player);
     }
     if (!shouldMinimize) {
-      if (player.dataset.komadoState == "minimized") {
-        closeButton.remove();
-      }
-      player.dataset.komadoState = "ready";
+      resetPlayer(player, "ready");
     }
     window.dispatchEvent(new Event("resize"));
   }, 100);
