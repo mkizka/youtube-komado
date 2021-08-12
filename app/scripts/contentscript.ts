@@ -1,11 +1,5 @@
 import browser from "webextension-polyfill";
-
-function insertStyle(css: string) {
-  const style = document.createElement("style");
-  style.setAttribute("type", "text/css");
-  style.textContent = css;
-  document.head.appendChild(style);
-}
+import "./contentscript.css";
 
 function needPositive(value: string, initialValue: number) {
   const parsed = parseInt(value);
@@ -25,30 +19,14 @@ async function main() {
   const storage = await browser.storage.sync.get(["playerWidth"]);
   const playerWidth = needPositive(storage.playerWidth, 480);
   const playerHeight = (playerWidth * 9) / 16;
-  insertStyle(`
-  [data-komado-state="minimized"] {
-    overflow: initial !important;
-    position: fixed !important;
-    right: 20px !important;
-    bottom: 20px !important;
-    height: ${playerHeight}px !important;
-    width: ${playerWidth}px !important;
-    z-index: 10000 !important;
-  }
-  [data-komado-state="minimized"] video {
-    height: ${playerHeight}px !important;
-    width: ${playerWidth}px !important;
-  }
-  [data-komado-state="minimized"] .ytp-right-controls {
-    display:none !important;
-  }
-  [data-komado-state="minimized"] .komado-close {
-    display: block;
-    position: relative;
-    top: -2rem;
-    margin-left: auto;
-  }
-  `);
+  document.documentElement.style.setProperty(
+    "--komado-player-width",
+    `${playerWidth}px`
+  );
+  document.documentElement.style.setProperty(
+    "--komado-player-height",
+    `${playerHeight}px`
+  );
   setInterval(() => {
     const player = document.querySelector<HTMLDivElement>("#movie_player");
     const closeButton = createCloseButton(() => {

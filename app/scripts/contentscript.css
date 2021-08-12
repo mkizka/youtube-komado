@@ -1,0 +1,22 @@
+[data-komado-state="minimized"] {
+  overflow: initial !important;
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  height: var(--komado-player-height) !important;
+  width: var(--komado-player-width) !important;
+  z-index: 10000 !important;
+}
+[data-komado-state="minimized"] video {
+  height: var(--komado-player-height) !important;
+  width: var(--komado-player-width) !important;
+}
+[data-komado-state="minimized"] .ytp-right-controls {
+  display: none !important;
+}
+[data-komado-state="minimized"] .komado-close {
+  display: block;
+  position: relative;
+  top: -2rem;
+  margin-left: auto;
+}
