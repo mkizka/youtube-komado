@@ -13,7 +13,9 @@
   height: var(--komado-player-height) !important;
   width: var(--komado-player-width) !important;
 }
-[data-komado-state="minimized"] .ytp-right-controls {
+[data-komado-state="minimized"] .ytp-right-controls,
+[data-komado-state="minimized"] .html5-endscreen,
+[data-komado-state="minimized"] .ytp-ce-element {
   display: none !important;
 }
 [data-komado-state="minimized"] .komado-close {
