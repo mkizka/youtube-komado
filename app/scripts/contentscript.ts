@@ -51,7 +51,6 @@ async function main() {
     if (!shouldMinimize) {
       resetPlayer(player, "ready");
     }
-    window.dispatchEvent(new Event("resize"));
   }, 100);
 }
 
