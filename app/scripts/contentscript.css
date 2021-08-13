@@ -8,6 +8,8 @@
   z-index: 10000 !important;
 }
 [data-komado-state="minimized"] video {
+  top: 0 !important;
+  left: 0 !important;
   height: var(--komado-player-height) !important;
   width: var(--komado-player-width) !important;
 }
