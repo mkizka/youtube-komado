@@ -1,6 +1,7 @@
 [data-komado-state="minimized"] {
   overflow: initial !important;
   position: fixed !important;
+  background-color: black;
   right: 20px !important;
   bottom: 20px !important;
   height: var(--komado-player-height) !important;
