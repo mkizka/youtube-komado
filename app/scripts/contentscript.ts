@@ -26,6 +26,7 @@ function resetPlayer(player: HTMLDivElement, newState: string) {
     .querySelectorAll(".komado-close")
     .forEach((button) => button.remove());
   player.dataset.komadoState = newState;
+  window.dispatchEvent(new CustomEvent("resize"));
 }
 
 async function main() {
