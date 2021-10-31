@@ -1,5 +1,4 @@
 [data-komado-state="minimized"] {
-  overflow: initial !important;
   position: fixed !important;
   background-color: black;
   right: 20px !important;
@@ -23,6 +22,6 @@
 [data-komado-state="minimized"] .komado-close {
   display: block;
   position: relative;
-  top: -2rem;
+  z-index: 10;
   margin-left: auto;
 }
