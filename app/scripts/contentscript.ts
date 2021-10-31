@@ -42,6 +42,7 @@ async function main() {
     `${playerHeight}px`
   );
   setInterval(() => {
+    if (location.pathname !== "/watch") return; // ミニプレーヤー時は作用しない
     const player = document.querySelector<HTMLDivElement>("#movie_player");
     if (player == null) return;
     const shouldMinimize =
