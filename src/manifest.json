@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube 小窓プレーヤー",
+  "description": "YouTubeでコメントを見ている時に小窓で動画も表示します",
+  "version": "2.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "src/images/icon16.png",
+    "48": "src/images/icon48.png",
+    "128": "src/images/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/scripts/contentscript.ts"]
+    }
+  ],
+  "permissions": ["storage"]
+}

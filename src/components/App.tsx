@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import browser from "webextension-polyfill";
+import { useEffect, useState } from "react";
 import "@exampledev/new.css";
 import "./App.css";
 
@@ -7,7 +6,7 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    browser.storage.sync.get(key).then((storage) => {
+    chrome.storage.sync.get(key).then((storage) => {
       if (storage) {
         setStoredValue(storage[key]);
       }
@@ -16,7 +15,7 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
 
   const setValue = (value: T) => {
     setStoredValue(value);
-    browser.storage.sync.set({ [key]: value });
+    chrome.storage.sync.set({ [key]: value });
   };
   return [storedValue, setValue];
 }
@@ -37,7 +36,7 @@ export function App() {
           </option>
         ))}
       </select>
-      <button type="button" onClick={() => browser.tabs.reload()}>
+      <button type="button" onClick={() => chrome.tabs.reload()}>
         リロードして設定を反映
       </button>
     </>

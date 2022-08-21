@@ -1,4 +1,3 @@
-import browser from "webextension-polyfill";
 import "./contentscript.css";
 
 function needPositive(value: string, initialValue: number) {
@@ -30,7 +29,7 @@ function resetPlayer(player: HTMLDivElement, newState: string) {
 }
 
 async function main() {
-  const storage = await browser.storage.sync.get(["playerWidth"]);
+  const storage = await chrome.storage.sync.get(["playerWidth"]);
   const playerWidth = needPositive(storage.playerWidth, 480);
   const playerHeight = (playerWidth * 9) / 16;
   document.documentElement.style.setProperty(
@@ -45,7 +44,7 @@ async function main() {
     const player = document.querySelector<HTMLDivElement>("#movie_player");
     if (player == null) return;
     const shouldMinimize =
-      window.pageYOffset > player.parentElement.offsetHeight * 0.75;
+      window.pageYOffset > player.parentElement!.offsetHeight * 0.75;
     if (
       shouldMinimize &&
       player.dataset.komadoState == "ready" &&
