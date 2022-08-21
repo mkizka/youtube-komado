@@ -25,7 +25,7 @@ export function App() {
   const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
     <>
-      <label>小窓プレーヤーの横幅</label>
+      <label>小窓プレーヤーのサイズ</label>
       <select
         value={playerWidth}
         onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
