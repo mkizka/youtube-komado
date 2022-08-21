@@ -41,15 +41,13 @@ async function main() {
     `${playerHeight}px`
   );
   setInterval(() => {
-    const player = document.querySelector<HTMLDivElement>("#movie_player");
-    if (player == null) return;
+    if (location.pathname != "/watch") {
+      return;
+    }
+    const player = document.querySelector<HTMLDivElement>("#movie_player")!;
     const shouldMinimize =
       window.pageYOffset > player.parentElement!.offsetHeight * 0.75;
-    if (
-      shouldMinimize &&
-      player.dataset.komadoState == "ready" &&
-      location.pathname == "/watch" // ミニプレーヤー時は作用しない
-    ) {
+    if (shouldMinimize && player.dataset.komadoState == "ready") {
       minimizePlayer(player);
     }
     if (!shouldMinimize) {
