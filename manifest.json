@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "YouTube 小窓プレーヤー",
-  "description": "YouTubeでコメントを見ている時に小窓で動画も表示します",
+  "name": "Komado for YouTube",
+  "description": "__MSG_extensionDescription__",
   "version": "2.0.0",
+  "default_locale": "en",
   "action": {
     "default_popup": "index.html"
   },
