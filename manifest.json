@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Komado for YouTube",
+  "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "default_locale": "en",
   "action": {
     "default_popup": "index.html"

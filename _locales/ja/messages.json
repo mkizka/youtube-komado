@@ -1,4 +1,7 @@
 {
+  "extensionName": {
+    "message": "YouTube 小窓プレーヤー"
+  },
   "extensionDescription": {
     "message": "YouTubeでコメントを見ている時に小窓で動画も表示します"
   },
