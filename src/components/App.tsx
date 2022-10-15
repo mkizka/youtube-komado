@@ -25,7 +25,7 @@ export function App() {
   const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
     <>
-      <label>小窓プレーヤーのサイズ</label>
+      <label>{chrome.i18n.getMessage("playerSizeLabel")}</label>
       <select
         value={playerWidth}
         onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
@@ -37,7 +37,7 @@ export function App() {
         ))}
       </select>
       <button type="button" onClick={() => chrome.tabs.reload()}>
-        リロードして設定を反映
+        {chrome.i18n.getMessage("applySettings")}
       </button>
     </>
   );
