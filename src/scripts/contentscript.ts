@@ -1,11 +1,17 @@
 import "./contentscript.css";
 
+function logging(message: string) {
+  if (process.env.NODE_ENV === "development") {
+    console.debug(message);
+  }
+}
+
 function needPositive(value: string, initialValue: number) {
   const parsed = parseInt(value);
   return parsed >= 0 ? parsed : initialValue;
 }
 
-function createCloseButton(onClose: () => void) {
+function createCloseButton({ onClose }: { onClose: () => void }) {
   const button = document.createElement("button");
   button.type = "button";
   button.textContent = "x";
@@ -15,7 +21,9 @@ function createCloseButton(onClose: () => void) {
 }
 
 function minimizePlayer(player: HTMLDivElement) {
-  const closeButton = createCloseButton(() => resetPlayer(player, "closed"));
+  const closeButton = createCloseButton({
+    onClose: () => resetPlayer(player, "closed"),
+  });
   player.insertAdjacentElement("beforeend", closeButton);
   player.dataset.komadoState = "minimized";
 }
@@ -28,31 +36,45 @@ function resetPlayer(player: HTMLDivElement, newState: string) {
   window.dispatchEvent(new CustomEvent("resize"));
 }
 
-async function main() {
+async function setCSSVariables() {
   const storage = await chrome.storage.sync.get(["playerWidth"]);
   const playerWidth = needPositive(storage.playerWidth, 480);
   const playerHeight = (playerWidth * 9) / 16;
   document.documentElement.style.setProperty(
     "--komado-player-width",
-    `${playerWidth}px`
+    `${playerWidth}px`,
   );
   document.documentElement.style.setProperty(
     "--komado-player-height",
-    `${playerHeight}px`
+    `${playerHeight}px`,
   );
+  logging(`yotube-komado: set player size to ${playerWidth}x${playerHeight}`);
+}
+
+function updatePlayerState() {
+  if (location.pathname != "/watch") {
+    return;
+  }
+  const player = document.querySelector<HTMLDivElement>("#movie_player")!;
+  if (player.dataset.komadoState == "closed") {
+    return;
+  }
+  const shouldMinimize =
+    window.scrollY > player.parentElement!.offsetHeight * 0.75;
+  if (shouldMinimize && player.dataset.komadoState != "minimized") {
+    logging("yotube-komado: minimize");
+    minimizePlayer(player);
+  }
+  if (!shouldMinimize && player.dataset.komadoState == "minimized") {
+    logging("yotube-komado: reset");
+    resetPlayer(player, "ready");
+  }
+}
+
+async function main() {
+  setCSSVariables();
   setInterval(() => {
-    if (location.pathname != "/watch") {
-      return;
-    }
-    const player = document.querySelector<HTMLDivElement>("#movie_player")!;
-    const shouldMinimize =
-      window.pageYOffset > player.parentElement!.offsetHeight * 0.75;
-    if (shouldMinimize && player.dataset.komadoState == "ready") {
-      minimizePlayer(player);
-    }
-    if (!shouldMinimize) {
-      resetPlayer(player, "ready");
-    }
+    updatePlayerState();
   }, 100);
 }
 
