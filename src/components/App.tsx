@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
 import "@exampledev/new.css";
 import "./App.css";
+
+import { useEffect, useState } from "react";
 
 function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    chrome.storage.sync.get(key).then((storage) => {
-      if (storage) {
-        setStoredValue(storage[key]);
-      }
-    });
+    chrome.storage.sync
+      .get(key)
+      .then((storage) => {
+        if (storage) {
+          setStoredValue(storage[key] as T);
+        }
+      })
+      .catch(console.error);
   }, []);
 
   const setValue = (value: T) => {
     setStoredValue(value);
-    chrome.storage.sync.set({ [key]: value });
+    chrome.storage.sync.set({ [key]: value }).catch(console.error);
   };
   return [storedValue, setValue];
 }
@@ -36,7 +40,12 @@ export function App() {
           </option>
         ))}
       </select>
-      <button type="button" onClick={() => chrome.tabs.reload()}>
+      <button
+        type="button"
+        onClick={() => {
+          chrome.tabs.reload().catch(console.error);
+        }}
+      >
         {chrome.i18n.getMessage("applySettings")}
       </button>
     </>

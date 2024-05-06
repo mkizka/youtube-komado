@@ -38,15 +38,15 @@ function resetPlayer(player: HTMLDivElement, newState: string) {
 
 async function setCSSVariables() {
   const storage = await chrome.storage.sync.get(["playerWidth"]);
-  const playerWidth = needPositive(storage.playerWidth, 480);
+  const playerWidth = needPositive(storage.playerWidth as string, 480);
   const playerHeight = (playerWidth * 9) / 16;
   document.documentElement.style.setProperty(
     "--komado-player-width",
-    `${playerWidth}px`
+    `${playerWidth}px`,
   );
   document.documentElement.style.setProperty(
     "--komado-player-height",
-    `${playerHeight}px`
+    `${playerHeight}px`,
   );
   logging(`yotube-komado: set player size to ${playerWidth}x${playerHeight}`);
 }
@@ -60,7 +60,7 @@ function canReset(player: HTMLDivElement) {
 }
 
 function updatePlayerState() {
-  if (location.pathname != "/watch") {
+  if (location.pathname !== "/watch") {
     return;
   }
   const player = document.querySelector<HTMLDivElement>("#movie_player")!;
@@ -77,10 +77,10 @@ function updatePlayerState() {
 }
 
 async function main() {
-  setCSSVariables();
+  await setCSSVariables();
   setInterval(() => {
     updatePlayerState();
   }, 100);
 }
 
-main();
+main().catch(console.error);
