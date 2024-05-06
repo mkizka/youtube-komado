@@ -1,8 +1,8 @@
 import "./contentscript.css";
 
-function logging(message: string) {
+function logging(...args: Parameters<typeof console.debug>) {
   if (process.env.NODE_ENV === "development") {
-    console.debug(message);
+    console.debug(...args);
   }
 }
 
@@ -42,13 +42,21 @@ async function setCSSVariables() {
   const playerHeight = (playerWidth * 9) / 16;
   document.documentElement.style.setProperty(
     "--komado-player-width",
-    `${playerWidth}px`,
+    `${playerWidth}px`
   );
   document.documentElement.style.setProperty(
     "--komado-player-height",
-    `${playerHeight}px`,
+    `${playerHeight}px`
   );
   logging(`yotube-komado: set player size to ${playerWidth}x${playerHeight}`);
+}
+
+function canMinimize(player: HTMLDivElement) {
+  return [undefined, "ready"].includes(player.dataset.komadoState);
+}
+
+function canReset(player: HTMLDivElement) {
+  return ["minimized", "closed"].includes(player.dataset.komadoState!);
 }
 
 function updatePlayerState() {
@@ -56,16 +64,13 @@ function updatePlayerState() {
     return;
   }
   const player = document.querySelector<HTMLDivElement>("#movie_player")!;
-  if (player.dataset.komadoState == "closed") {
-    return;
-  }
   const shouldMinimize =
     window.scrollY > player.parentElement!.offsetHeight * 0.75;
-  if (shouldMinimize && player.dataset.komadoState != "minimized") {
+  if (shouldMinimize && canMinimize(player)) {
     logging("yotube-komado: minimize");
     minimizePlayer(player);
   }
-  if (!shouldMinimize && player.dataset.komadoState == "minimized") {
+  if (!shouldMinimize && canReset(player)) {
     logging("yotube-komado: reset");
     resetPlayer(player, "ready");
   }
