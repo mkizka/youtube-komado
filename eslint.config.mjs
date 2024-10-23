@@ -1,8 +1,14 @@
-import { mkizka } from "@mkizka/eslint-config";
+import { configs } from "@mkizka/eslint-config";
 
 export default [
   {
     ignores: ["dist", "vite.config.ts"],
   },
-  ...mkizka(),
+  ...configs.typescript(),
+  ...configs.react(),
+  {
+    rules: {
+      "@typescript-eslint/no-deprecated": "off",
+    },
+  },
 ];

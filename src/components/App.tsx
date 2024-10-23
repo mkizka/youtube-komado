@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/use-unknown-in-catch-callback-variable */
 import "@exampledev/new.css";
 import "./App.css";
 
@@ -15,7 +18,7 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
         }
       })
       .catch(console.error);
-  }, []);
+  }, [key]);
 
   const setValue = (value: T) => {
     setStoredValue(value);

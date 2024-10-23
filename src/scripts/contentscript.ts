@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/use-unknown-in-catch-callback-variable */
+/* eslint-disable no-console */
 import "./contentscript.css";
 
 function logging(...args: Parameters<typeof console.debug>) {
