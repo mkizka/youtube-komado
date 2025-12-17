@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Komado for YouTube"
+  },
+  "extensionDescription": {
+    "message": "Show mini player when scrolling on YouTube"
+  },
+  "playerSizeLabel": {
+    "message": "Player Size"
+  },
+  "applySettings": {
+    "message": "Apply Settings"
+  }
+}

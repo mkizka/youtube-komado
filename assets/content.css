@@ -1,0 +1,27 @@
+[data-komado-state="minimized"] {
+  position: fixed !important;
+  background-color: black;
+  right: 20px !important;
+  bottom: 20px !important;
+  height: var(--komado-player-height) !important;
+  width: var(--komado-player-width) !important;
+  z-index: 10000 !important;
+}
+[data-komado-state="minimized"] video {
+  top: 0 !important;
+  left: 0 !important;
+  height: var(--komado-player-height) !important;
+  width: var(--komado-player-width) !important;
+}
+[data-komado-state="minimized"] .ytp-right-controls,
+[data-komado-state="minimized"] .html5-endscreen,
+[data-komado-state="minimized"] .ytp-ce-element,
+[data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container {
+  display: none !important;
+}
+[data-komado-state="minimized"] .komado-close {
+  display: block;
+  position: relative;
+  z-index: 10;
+  margin-left: auto;
+}

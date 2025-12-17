@@ -1,33 +1,51 @@
-import { useState } from 'react';
-import reactLogo from '@/assets/react.svg';
-import wxtLogo from '/wxt.svg';
-import './App.css';
+import "@exampledev/new.css";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { useEffect, useState } from "react";
+import { browser } from "wxt/browser";
 
+function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+  const [storedValue, setStoredValue] = useState<T>(initialValue);
+
+  useEffect(() => {
+    void browser.storage.sync.get(key).then((storage) => {
+      if (storage[key] !== undefined) {
+        setStoredValue(storage[key] as T);
+      }
+    });
+  }, [key]);
+
+  const setValue = (value: T) => {
+    setStoredValue(value);
+    void browser.storage.sync.set({ [key]: value });
+  };
+  return [storedValue, setValue];
+}
+
+export function App() {
+  const [playerWidth, setPlayerWidth] = useStorage("playerWidth", 480);
+  const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
     <>
-      <div>
-        <a href="https://wxt.dev" target="_blank">
-          <img src={wxtLogo} className="logo" alt="WXT logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>WXT + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the WXT and React logos to learn more
-      </p>
+      <label>{browser.i18n.getMessage("playerSizeLabel")}</label>
+      <select
+        value={playerWidth}
+        onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
+      >
+        {playerWidthOptions.map((playerWidth) => (
+          <option key={playerWidth} value={playerWidth}>
+            {`${playerWidth}x${(playerWidth * 9) / 16}`}
+          </option>
+        ))}
+      </select>
+      <button
+        type="button"
+        onClick={() => {
+          void browser.tabs.reload();
+        }}
+      >
+        {browser.i18n.getMessage("applySettings")}
+      </button>
     </>
   );
 }
