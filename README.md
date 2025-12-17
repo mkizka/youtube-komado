@@ -1,3 +1,7 @@
-# WXT + React
+# youtube-komado
 
-This template should help get you started developing with React in WXT.
+YouTube動画を小窓で表示するブラウザ拡張機能
+
+Chrome Web Store: https://chrome.google.com/webstore/detail/njnjbpmcgffckgidchbadfbkeghnffnh
+
+<img src="screenshot.png" width="400">
