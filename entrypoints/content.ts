@@ -44,18 +44,19 @@ export default defineContentScript({
 
     async function setCSSVariables() {
       const storage = await browser.storage.sync.get(["playerWidth"]);
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       const playerWidth = needPositive(storage.playerWidth as string, 480);
       const playerHeight = (playerWidth * 9) / 16;
       document.documentElement.style.setProperty(
         "--komado-player-width",
-        `${playerWidth}px`,
+        `${playerWidth}px`
       );
       document.documentElement.style.setProperty(
         "--komado-player-height",
-        `${playerHeight}px`,
+        `${playerHeight}px`
       );
       logging(
-        `yotube-komado: set player size to ${playerWidth}x${playerHeight}`,
+        `yotube-komado: set player size to ${playerWidth}x${playerHeight}`
       );
     }
 
@@ -64,6 +65,7 @@ export default defineContentScript({
     }
 
     function canReset(player: HTMLDivElement) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return ["minimized", "closed"].includes(player.dataset.komadoState!);
     }
 
@@ -72,8 +74,10 @@ export default defineContentScript({
         return;
       }
       const player =
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         document.querySelector<HTMLDivElement>("#player-container")!;
       const shouldMinimize =
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         window.scrollY > player.parentElement!.offsetHeight * 0.75;
       if (shouldMinimize && canMinimize(player)) {
         logging("yotube-komado: minimize");

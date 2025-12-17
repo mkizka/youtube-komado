@@ -10,6 +10,7 @@ function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   useEffect(() => {
     void browser.storage.sync.get(key).then((storage) => {
       if (storage[key] !== undefined) {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         setStoredValue(storage[key] as T);
       }
     });

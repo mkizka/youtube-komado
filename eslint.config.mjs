@@ -6,9 +6,4 @@ export default [
   },
   ...configs.typescript(),
   ...configs.react(),
-  {
-    rules: {
-      "@typescript-eslint/no-deprecated": "off",
-    },
-  },
 ];
