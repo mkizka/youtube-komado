@@ -1,28 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/use-unknown-in-catch-callback-variable */
 import "@exampledev/new.css";
 import "./App.css";
 
 import { useEffect, useState } from "react";
+import { browser } from "wxt/browser";
 
 function useStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    chrome.storage.sync
-      .get(key)
-      .then((storage) => {
-        if (storage) {
-          setStoredValue(storage[key] as T);
-        }
-      })
-      .catch(console.error);
+    void browser.storage.sync.get(key).then((storage) => {
+      if (storage[key] !== undefined) {
+        setStoredValue(storage[key] as T);
+      }
+    });
   }, [key]);
 
   const setValue = (value: T) => {
     setStoredValue(value);
-    chrome.storage.sync.set({ [key]: value }).catch(console.error);
+    void browser.storage.sync.set({ [key]: value });
   };
   return [storedValue, setValue];
 }
@@ -32,7 +27,7 @@ export function App() {
   const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
     <>
-      <label>{chrome.i18n.getMessage("playerSizeLabel")}</label>
+      <label>{browser.i18n.getMessage("playerSizeLabel")}</label>
       <select
         value={playerWidth}
         onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
@@ -46,11 +41,13 @@ export function App() {
       <button
         type="button"
         onClick={() => {
-          chrome.tabs.reload().catch(console.error);
+          void browser.tabs.reload();
         }}
       >
-        {chrome.i18n.getMessage("applySettings")}
+        {browser.i18n.getMessage("applySettings")}
       </button>
     </>
   );
 }
+
+export default App;
