@@ -27,27 +27,41 @@ export function App() {
   const [playerWidth, setPlayerWidth] = useStorage("playerWidth", 480);
   const playerWidthOptions = [320, 400, 480, 560, 640, 720, 800];
   return (
-    <>
-      <label>{browser.i18n.getMessage("playerSizeLabel")}</label>
-      <select
-        value={playerWidth}
-        onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
-      >
-        {playerWidthOptions.map((playerWidth) => (
-          <option key={playerWidth} value={playerWidth}>
-            {`${playerWidth}x${(playerWidth * 9) / 16}`}
-          </option>
-        ))}
-      </select>
-      <button
-        type="button"
-        onClick={() => {
-          void browser.tabs.reload();
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          width: "150px",
         }}
       >
-        {browser.i18n.getMessage("applySettings")}
-      </button>
-    </>
+        <label>{browser.i18n.getMessage("playerSizeLabel")}</label>
+        <select
+          value={playerWidth}
+          onChange={(e) => setPlayerWidth(parseInt(e.currentTarget.value))}
+        >
+          {playerWidthOptions.map((playerWidth) => (
+            <option key={playerWidth} value={playerWidth}>
+              {`${playerWidth}x${(playerWidth * 9) / 16}`}
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          onClick={() => {
+            void browser.tabs.reload();
+          }}
+        >
+          {browser.i18n.getMessage("applySettings")}
+        </button>
+      </div>
+    </div>
   );
 }
 
