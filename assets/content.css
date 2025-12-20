@@ -19,7 +19,8 @@
 [data-komado-state="minimized"] .ytp-right-controls,
 [data-komado-state="minimized"] .html5-endscreen,
 [data-komado-state="minimized"] .ytp-ce-element,
-[data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container {
+[data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container,
+[data-komado-state="minimized"] #cinematics-container {
   display: none !important;
 }
 [data-komado-state="minimized"] .komado-close {
