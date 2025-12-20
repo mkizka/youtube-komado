@@ -49,14 +49,14 @@ export default defineContentScript({
       const playerHeight = (playerWidth * 9) / 16;
       document.documentElement.style.setProperty(
         "--komado-player-width",
-        `${playerWidth}px`
+        `${playerWidth}px`,
       );
       document.documentElement.style.setProperty(
         "--komado-player-height",
-        `${playerHeight}px`
+        `${playerHeight}px`,
       );
       logging(
-        `yotube-komado: set player size to ${playerWidth}x${playerHeight}`
+        `yotube-komado: set player size to ${playerWidth}x${playerHeight}`,
       );
     }
 
@@ -66,7 +66,7 @@ export default defineContentScript({
 
     function canReset() {
       return ["minimized", "closed"].includes(
-        document.body.dataset.komadoState ?? "ready"
+        document.body.dataset.komadoState ?? "ready",
       );
     }
 
