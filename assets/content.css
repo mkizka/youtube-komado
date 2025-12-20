@@ -1,5 +1,5 @@
-[data-komado-state="minimized"] #player, // デフォルト表示
-[data-komado-state="minimized"] #player-full-bleed-container, // シアターモード
+[data-komado-state="minimized"] #player, /* デフォルト表示 */
+[data-komado-state="minimized"] #player-full-bleed-container, /* シアターモード */
 [data-komado-state="minimized"] #movie_player {
   z-index: 10000 !important;
 }
@@ -19,9 +19,9 @@
   height: var(--komado-player-height) !important;
   width: var(--komado-player-width) !important;
 }
-[data-komado-state="minimized"] .ytp-right-controls, // プレーヤー右下のコントロール
-[data-komado-state="minimized"] .ytp-ce-element, // 終了時の関連動画
-[data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container, // 次の動画(自動再生がオンのとき)
+[data-komado-state="minimized"] .ytp-right-controls, /* プレーヤー右下のコントロール */
+[data-komado-state="minimized"] .ytp-ce-element, /* 終了時の関連動画 */
+[data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container, /* 次の動画(自動再生がオンのとき) */
 [data-komado-state="minimized"] #cinematics-container {
   display: none !important;
 }
