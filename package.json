@@ -2,7 +2,7 @@
   "name": "youtube-komado",
   "description": "Show mini player when scrolling on YouTube",
   "private": true,
-  "version": "2.1.4",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
