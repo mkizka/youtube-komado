@@ -1,4 +1,7 @@
-[data-komado-state="minimized"] {
+[data-komado-state="minimized"] #player {
+  z-index: 10000 !important;
+}
+[data-komado-state="minimized"] #movie_player {
   position: fixed !important;
   background-color: black;
   right: 20px !important;

@@ -28,17 +28,17 @@ export default defineContentScript({
 
     function minimizePlayer(player: HTMLDivElement) {
       const closeButton = createCloseButton({
-        onClose: () => resetPlayer(player, "closed"),
+        onClose: () => resetPlayer("closed"),
       });
       player.insertAdjacentElement("beforeend", closeButton);
-      player.dataset.komadoState = "minimized";
+      document.body.dataset.komadoState = "minimized";
     }
 
-    function resetPlayer(player: HTMLDivElement, newState: string) {
+    function resetPlayer(newState: string) {
       document
         .querySelectorAll(".komado-close")
         .forEach((button) => button.remove());
-      player.dataset.komadoState = newState;
+      document.body.dataset.komadoState = newState;
       window.dispatchEvent(new CustomEvent("resize"));
     }
 
@@ -60,32 +60,34 @@ export default defineContentScript({
       );
     }
 
-    function canMinimize(player: HTMLDivElement) {
-      return [undefined, "ready"].includes(player.dataset.komadoState);
+    function canMinimize() {
+      return [undefined, "ready"].includes(document.body.dataset.komadoState);
     }
 
-    function canReset(player: HTMLDivElement) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return ["minimized", "closed"].includes(player.dataset.komadoState!);
+    function canReset() {
+      return ["minimized", "closed"].includes(
+        document.body.dataset.komadoState ?? "ready"
+      );
     }
 
     function updatePlayerState() {
       if (location.pathname !== "/watch") {
         return;
       }
-      const player =
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        document.querySelector<HTMLDivElement>("#player-container")!;
+      const player = document.querySelector<HTMLDivElement>("#movie_player");
+      if (!player) {
+        return;
+      }
       const shouldMinimize =
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         window.scrollY > player.parentElement!.offsetHeight * 0.75;
-      if (shouldMinimize && canMinimize(player)) {
+      if (shouldMinimize && canMinimize()) {
         logging("yotube-komado: minimize");
         minimizePlayer(player);
       }
-      if (!shouldMinimize && canReset(player)) {
+      if (!shouldMinimize && canReset()) {
         logging("yotube-komado: reset");
-        resetPlayer(player, "ready");
+        resetPlayer("ready");
       }
     }
 
