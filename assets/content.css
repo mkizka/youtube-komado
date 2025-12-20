@@ -9,6 +9,7 @@
   height: var(--komado-player-height) !important;
   width: var(--komado-player-width) !important;
   z-index: 10000 !important;
+  border-radius: 12px;
 }
 [data-komado-state="minimized"] video {
   top: 0 !important;
