@@ -13,7 +13,8 @@
     "zip:firefox": "wxt zip -b firefox",
     "typecheck": "tsc --noEmit",
     "postinstall": "wxt prepare",
-    "format": "prettier . -w && eslint --fix ."
+    "format": "prettier . -w && eslint --fix .",
+    "lint": "prettier . --check && eslint ."
   },
   "dependencies": {
     "@exampledev/new.css": "1.1.3",
