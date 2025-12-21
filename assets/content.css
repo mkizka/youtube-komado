@@ -22,7 +22,8 @@
 [data-komado-state="minimized"] .ytp-right-controls, /* プレーヤー右下のコントロール */
 [data-komado-state="minimized"] .ytp-ce-element, /* 終了時の関連動画 */
 [data-komado-state="minimized"] .ytp-autonav-endscreen-countdown-container, /* 次の動画(自動再生がオンのとき) */
-[data-komado-state="minimized"] #cinematics-container {
+[data-komado-state="minimized"] #cinematics-container, /* ダークモード時の動画後ろにある影 */
+[data-komado-state="minimized"] #cinematics-full-bleed-container {
   display: none !important;
 }
 [data-komado-state="minimized"] .komado-close {
