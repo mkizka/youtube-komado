@@ -1,9 +1,7 @@
-import { configs } from "@mkizka/eslint-config";
+import { mkizka } from "@mkizka/eslint-config";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default [
-  {
-    ignores: [".output", ".wxt", "wxt.config.ts"],
-  },
-  ...configs.typescript(),
-  ...configs.react(),
-];
+export default defineConfig([
+  globalIgnores([".output", ".wxt", "wxt.config.ts"]),
+  mkizka,
+]);
