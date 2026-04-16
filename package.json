@@ -27,9 +27,9 @@
     "@types/react-dom": "19.2.3",
     "@wxt-dev/module-react": "1.2.2",
     "eslint": "9.39.4",
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "typescript": "6.0.2",
-    "wxt": "0.20.20"
+    "wxt": "0.20.21"
   },
   "packageManager": "pnpm@10.33.0"
 }
