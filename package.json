@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@exampledev/new.css": "1.1.3",
-    "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@mkizka/eslint-config": "10.0.0",
