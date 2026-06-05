@@ -31,5 +31,5 @@
     "typescript": "6.0.3",
     "wxt": "0.20.26"
   },
-  "packageManager": "pnpm@11.3.0"
+  "packageManager": "pnpm@11.5.1"
 }
