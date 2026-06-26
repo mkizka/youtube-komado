@@ -29,7 +29,7 @@ importers:
         version: 19.2.3(@types/react@19.2.17)
       '@wxt-dev/module-react':
         specifier: 1.2.2
-        version: 1.2.2(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.20.26(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2))
+        version: 1.2.2(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.20.27(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2))
       eslint:
         specifier: 10.5.0
         version: 10.5.0(jiti@2.7.0)
@@ -40,8 +40,8 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
       wxt:
-        specifier: 0.20.26
-        version: 0.20.26(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2)
+        specifier: 0.20.27
+        version: 0.20.27(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2)
 
 packages:
 
@@ -635,6 +635,9 @@ packages:
 
   '@wxt-dev/browser@0.1.42':
     resolution: {integrity: sha512-BSb0H09i4+0WlqFnN7LnZW0M6uCPH9KndciGx7mwOFKRVjNCorqwPk3hiVB58yQ+cyJNpDvYWL6IoPBxvP8qEA==}
+
+  '@wxt-dev/browser@0.2.0':
+    resolution: {integrity: sha512-gURcpkDUknl6FGe8LTsFqv4ZWfi/EacAalJ18qmtVzOnicCZRKkIGK2SApO7JxG4Ig589UexM/CADbKJ66h8aw==}
 
   '@wxt-dev/module-react@1.2.2':
     resolution: {integrity: sha512-+lRLi1r9dAXpLySWSIWHLJ1h/nFzR20iQnx3RNrKyA6oJg4+ClOluVXozHjfPg9Okfy/umtffiOopGayASrg6w==}
@@ -2172,8 +2175,8 @@ packages:
     resolution: {integrity: sha512-g/eziiSUNBSsdDJtCLB8bdYEUMj4jR7AGeUo96p/3dTafgjHhpF4RiCFPiRILwjQoDXx5MqkBr4fwWtR3Ky4Wg==}
     engines: {node: '>=20'}
 
-  wxt@0.20.26:
-    resolution: {integrity: sha512-PMGz7sAlONJgwBkOriInXOoEU6/jlGKrhSFvZfiBPHZocyYPfnw1lod9rGDra957H83WO+TnGjYwJiGYciSIqA==}
+  wxt@0.20.27:
+    resolution: {integrity: sha512-dm6yixz2awM4YMqpTJnsCa8aOPiTrjiIjbWslgR5hCjgwhuft+hLlla339Dt7gIKwQloee4oOruoK++vaX0APA==}
     engines: {bun: '>=1.2.0', node: '>=20.12.0'}
     hasBin: true
     peerDependencies:
@@ -2753,11 +2756,16 @@ snapshots:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
 
-  '@wxt-dev/module-react@1.2.2(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.20.26(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2))':
+  '@wxt-dev/browser@0.2.0':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.16
+
+  '@wxt-dev/module-react@1.2.2(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0))(wxt@0.20.27(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2))':
     dependencies:
       '@vitejs/plugin-react': 6.0.2(vite@8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0))
       vite: 8.0.14(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)
-      wxt: 0.20.26(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2)
+      wxt: 0.20.27(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2)
     transitivePeerDependencies:
       - '@rolldown/plugin-babel'
       - babel-plugin-react-compiler
@@ -4303,14 +4311,14 @@ snapshots:
       is-wsl: 3.1.1
       powershell-utils: 0.1.0
 
-  wxt@0.20.26(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2):
+  wxt@0.20.27(@types/node@25.9.1)(eslint@10.5.0(jiti@2.7.0))(jiti@2.7.0)(rolldown@1.0.2):
     dependencies:
       '@1natsu/wait-element': 4.2.0
       '@aklinker1/rollup-plugin-visualizer': 5.12.0
       '@webext-core/fake-browser': 1.5.1
       '@webext-core/isolated-element': 1.1.5
       '@webext-core/match-patterns': 1.0.3
-      '@wxt-dev/browser': 0.1.42
+      '@wxt-dev/browser': 0.2.0
       '@wxt-dev/storage': 1.2.8
       async-mutex: 0.5.0
       c12: 3.3.4(magicast@0.5.3)
