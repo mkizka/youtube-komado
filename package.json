@@ -23,13 +23,13 @@
   },
   "devDependencies": {
     "@mkizka/eslint-config": "10.0.0",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "@wxt-dev/module-react": "1.2.2",
     "eslint": "10.8.0",
     "prettier": "3.9.6",
     "typescript": "6.0.3",
-    "wxt": "0.21.2"
+    "wxt": "0.21.3"
   },
-  "packageManager": "pnpm@11.17.0"
+  "packageManager": "pnpm@11.20.0"
 }
