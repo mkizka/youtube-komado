@@ -24,9 +24,9 @@
   "devDependencies": {
     "@mkizka/eslint-config": "10.0.0",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
+    "@types/react-dom": "19.2.7",
     "@wxt-dev/module-react": "1.2.2",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "prettier": "3.9.6",
     "typescript": "6.0.3",
     "wxt": "0.21.4"
